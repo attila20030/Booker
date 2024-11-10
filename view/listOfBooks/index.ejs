@@ -1,0 +1,34 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/booker.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (prods.length > 0) { %>
+            <div class="grid">
+                <% for (let booker of prods) { %>
+                    <article class="card booker-item">
+                        <header class="card__header">
+                            <h1 class="booker__title"><%= booker.title %></h1>
+                        </header>
+                        <div class="card__image">
+                            <img src="<%= booker.imageUrl %>"
+                                alt="<%= booker.title %>">
+                        </div>
+                        <div class="card__content">
+                            <h2 class="booker__price">$<%= booker.price %></h2>
+                            <p class="booker__description"><%= booker.description %></p>
+                        </div>
+                        <div class="card__actions">
+                            <%- include('../includes/add-to-cart.ejs', {booker: booker}) %>
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+        <% } else { %>
+            <h1>No bookers Found!</h1>
+        <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>
